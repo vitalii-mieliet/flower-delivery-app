@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { PHONE_REGEX, EMAIL_REGEX } from '../../constants/index.js';
 
 const shopSchema = new Schema(
   {
@@ -14,11 +15,13 @@ const shopSchema = new Schema(
     },
     phone: {
       type: String,
+      match: PHONE_REGEX,
       required: true,
       trim: true,
     },
     email: {
       type: String,
+      match: EMAIL_REGEX,
       trim: true,
       lowercase: true,
     },

@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import shopsRouter from './shops.js';
 
 const router = Router();
 
-router.use('/products', (req, res) => {
-  res.json('Hello Flower Delivery App');
-});
+router.use('/shops', shopsRouter);
 
 export default router;

@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": "client"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/*.log": true,
+      "../server": true,
+      "vite.config.ts": true,
+      "tsconfig.json": true,
+      "tsconfig.app.json": true,
+      "tsconfig.node.json": true,
+      "eslint.config.js": true
+    }
+  }
+}

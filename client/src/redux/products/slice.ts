@@ -4,6 +4,7 @@ import {
   EntityState,
 } from '@reduxjs/toolkit';
 import { fetchProductsByQuery } from './operations';
+import { AsyncState } from '../../types';
 
 const productsAdapter = createEntityAdapter<Product, string>({
   selectId: (product) => product._id,
@@ -49,10 +50,7 @@ export interface Product {
   price: ProductPrice;
 }
 
-interface ProductsState extends EntityState<Product, string> {
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
-}
+interface ProductsState extends EntityState<Product, string>, AsyncState {}
 
 export default productsSlice.reducer;
 export { productsAdapter };

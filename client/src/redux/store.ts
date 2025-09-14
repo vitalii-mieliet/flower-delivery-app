@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import productsReducer from './products/slice';
+
 const rootReducer = combineReducers({
   shops: (state = {}) => state,
-  products: (state = {}) => state,
+  products: productsReducer,
   filters: (state = {}) => state,
   cart: (state = {}) => state,
 });

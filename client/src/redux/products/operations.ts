@@ -1,18 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../service/api';
-import { Product } from './slice';
-
-interface FetchProductsResponce {
-  data: Product[];
-}
-
-interface FetchProductsFilter {
-  shopId: string;
-}
+import { FetchProductsResponce, Product } from '../../types/products';
+import { FilterValues } from '../../types/filters';
 
 export const fetchProductsByQuery = createAsyncThunk<
   Product[],
-  FetchProductsFilter,
+  FilterValues,
   { rejectValue: string }
 >('products/fetch', async (params, { rejectWithValue }) => {
   try {

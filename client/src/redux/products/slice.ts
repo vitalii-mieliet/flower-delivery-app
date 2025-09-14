@@ -1,10 +1,7 @@
-import {
-  createEntityAdapter,
-  createSlice,
-  EntityState,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { fetchProductsByQuery } from './operations';
-import { AsyncState } from '../../types';
+
+import { Product, ProductsState } from '../../types/products';
 
 const productsAdapter = createEntityAdapter<Product, string>({
   selectId: (product) => product._id,
@@ -34,23 +31,6 @@ const productsSlice = createSlice({
       });
   },
 });
-
-// Types
-export interface ProductPrice {
-  amount: number;
-  currency: string;
-}
-
-export interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  shopId: string;
-  price: ProductPrice;
-}
-
-interface ProductsState extends EntityState<Product, string>, AsyncState {}
 
 export default productsSlice.reducer;
 export { productsAdapter };

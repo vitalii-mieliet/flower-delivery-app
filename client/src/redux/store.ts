@@ -3,12 +3,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import productsReducer from './products/slice';
 import filtersReducer from './filters/slice';
+import cartReducer from './cart/slice';
 
 const rootReducer = combineReducers({
   shops: (state = {}) => state,
   products: productsReducer,
   filters: filtersReducer,
-  cart: (state = {}) => state,
+  cart: cartReducer,
 });
 
 const store = configureStore({

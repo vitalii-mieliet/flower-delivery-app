@@ -7,7 +7,7 @@ export interface ShopFilterItem {
 }
 
 export interface FilterValues {
-  shopId: string | null;
+  shopId?: string | null;
 }
 
 export interface FilterOptions {

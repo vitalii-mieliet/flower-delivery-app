@@ -13,6 +13,7 @@ import OrderForm, { OrderFormHandle } from '../components/OrderForm';
 import CartList from '../components/CartList';
 import Message from '../components/common/Message';
 import { UserData } from '../types/users';
+import { formatPrice } from '../utils/formatPrice';
 
 const CartPage = () => {
   const items = useAppSelector(selectCartItems);
@@ -79,11 +80,11 @@ const CartPage = () => {
                 <Typography fontSize={24} fontWeight={600}>
                   Total price:{' '}
                 </Typography>
-                <Box display="flex" alignItems="center" gap={1}>
+                <Box display="flex" alignItems="end" gap={0.5}>
                   <Typography fontSize={24} fontWeight={600}>
-                    {totalPrice}
+                    {formatPrice(totalPrice)}
                   </Typography>
-                  <Typography fontSize={24} fontWeight={600}>
+                  <Typography fontSize={20} fontWeight={600}>
                     USD
                   </Typography>
                 </Box>

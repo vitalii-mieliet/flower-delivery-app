@@ -6,6 +6,7 @@ import { CartItem } from '../types/cart';
 import QuantitySelector from './common/QuantitySelector';
 import { useAppDispatch } from '../redux/store';
 import { cartActions } from '../redux/cart/slice';
+import { formatPrice } from '../utils/formatPrice';
 
 interface Props {
   item: CartItem;
@@ -70,9 +71,9 @@ const CartListItem: FC<Props> = ({ item }) => {
             productId={item._id}
             quantity={item.quantity ?? 1}
           />
-          <Box display="flex" gap={1}>
-            <Typography fontSize={24}>{item.rowTotal}</Typography>
-            <Typography fontSize={24}>{item.price.currency}</Typography>
+          <Box display="flex" gap={0.5} alignItems="end">
+            <Typography fontSize={24}>{formatPrice(item.rowTotal)}</Typography>
+            <Typography fontSize={20}>{item.price.currency}</Typography>
           </Box>
         </Box>
       </CardContent>

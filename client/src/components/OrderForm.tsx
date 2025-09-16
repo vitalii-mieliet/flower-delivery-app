@@ -5,6 +5,7 @@ import { TextField } from '@mui/material';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { orderFormSchema } from '../validation/orderForm';
 import { UserData } from '../types/users';
+import { ORDER_FIELDS } from '../constants/order';
 
 interface Props {
   values: UserData;
@@ -36,52 +37,31 @@ const OrderForm = forwardRef<OrderFormHandle, Props>(
           validationSchema={toFormikValidationSchema(orderFormSchema)}
           onSubmit={onSubmit}
         >
-          {({ handleChange, values, errors, touched }) => (
+          {({ handleChange, handleBlur, values, errors, touched }) => (
             <Form id="order-form">
-              <TextField
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  onChange({ name: e.target.value });
-                }}
-                label="Name"
-                error={!!errors.name && touched.name}
-                helperText={touched.name && errors.name}
-              />
-              <TextField
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  onChange({ email: e.target.value });
-                }}
-                label="Email"
-                error={!!errors.email && touched.email}
-                helperText={touched.email && errors.email}
-              />
-              <TextField
-                name="phone"
-                value={values.phone}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  onChange({ phone: e.target.value });
-                }}
-                label="Phone"
-                error={!!errors.phone && touched.phone}
-                helperText={touched.phone && errors.phone}
-              />
-              <TextField
-                name="address"
-                value={values.address}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  onChange({ address: e.target.value });
-                }}
-                label="Address"
-                error={!!errors.address && touched.address}
-                helperText={touched.address && errors.address}
-              />
+              {ORDER_FIELDS.map(({ name, label, placeholder }, idx) => (
+                <TextField
+                  key={idx}
+                  sx={{
+                    width: '100%',
+                    '& .MuiFormHelperText-root': {
+                      margin: 0,
+                      minHeight: '20px',
+                    },
+                  }}
+                  name={name}
+                  value={values[name]}
+                  onChange={handleChange}
+                  onBlur={(e) => {
+                    handleBlur(e);
+                    onChange({ [name]: e.target.value });
+                  }}
+                  label={label}
+                  placeholder={placeholder}
+                  error={!!errors[name] && touched[name]}
+                  helperText={(touched[name] && errors[name]) || ' '}
+                />
+              ))}
             </Form>
           )}
         </Formik>

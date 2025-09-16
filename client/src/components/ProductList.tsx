@@ -11,7 +11,7 @@ const ProductList: FC<Props> = ({ products }) => {
   return (
     <Grid2 component="ul" container spacing={2}>
       {products.map((product: Product) => (
-        <Grid2 key={product._id} component="li" size={4}>
+        <Grid2 key={product._id} component="li" size={4} height={420}>
           <ProductItem product={product} />
         </Grid2>
       ))}

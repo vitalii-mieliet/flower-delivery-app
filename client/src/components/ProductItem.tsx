@@ -12,6 +12,7 @@ import { useAppDispatch } from '../redux/store';
 import { cartActions } from '../redux/cart/slice';
 import { CartItem } from '../types/cart';
 import { formatPrice } from '../utils/formatPrice';
+import { toast } from 'react-toastify';
 
 interface Props {
   product: Product;
@@ -32,6 +33,7 @@ const ProductItem: FC<Props> = ({ product }) => {
         rowTotal: price.amount,
       } as CartItem),
     );
+    toast.success('Product successfully added to your cart!');
   };
 
   return (

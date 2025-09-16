@@ -14,6 +14,7 @@ import CartList from '../components/CartList';
 import Message from '../components/common/Message';
 import { UserData } from '../types/users';
 import { formatPrice } from '../utils/formatPrice';
+import { toast } from 'react-toastify';
 
 const CartPage = () => {
   const items = useAppSelector(selectCartItems);
@@ -38,11 +39,10 @@ const CartPage = () => {
         items: orderItems,
       };
 
-      const response = await api.post('/orders', payload);
-
-      console.log(response);
-    } catch (err) {
-      console.error('Failed to create order', err);
+      await api.post('/orders', payload);
+      toast.success('Your order has been successfully placed!');
+    } catch {
+      toast.error('Failed to create order');
     }
   };
 

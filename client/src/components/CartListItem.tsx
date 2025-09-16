@@ -7,6 +7,7 @@ import QuantitySelector from './common/QuantitySelector';
 import { useAppDispatch } from '../redux/store';
 import { cartActions } from '../redux/cart/slice';
 import { formatPrice } from '../utils/formatPrice';
+import { toast } from 'react-toastify';
 
 interface Props {
   item: CartItem;
@@ -15,7 +16,10 @@ interface Props {
 const CartListItem: FC<Props> = ({ item }) => {
   const dispatch = useAppDispatch();
 
-  const handleRemove = () => dispatch(cartActions.removeCartItem(item._id));
+  const handleRemove = () => {
+    dispatch(cartActions.removeCartItem(item._id));
+    toast.success(`"${item.name}" successfully removed from the cart!`);
+  };
   return (
     <Card
       sx={{

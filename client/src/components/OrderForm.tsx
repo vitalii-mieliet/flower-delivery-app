@@ -15,6 +15,7 @@ interface Props {
 export interface OrderFormHandle {
   submit: () => void;
   getValues: () => UserData | undefined;
+  reset: () => void;
 }
 
 const OrderForm = forwardRef<OrderFormHandle, Props>(
@@ -26,6 +27,7 @@ const OrderForm = forwardRef<OrderFormHandle, Props>(
         formRef.current?.submitForm();
       },
       getValues: () => formRef.current?.values,
+      reset: () => formRef.current?.resetForm(),
     }));
 
     return (

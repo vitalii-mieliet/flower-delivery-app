@@ -40,6 +40,8 @@ const CartPage = () => {
       };
 
       await api.post('/orders', payload);
+      dispatch(cartActions.clearCart());
+      formRef.current?.reset();
       toast.success('Your order has been successfully placed!');
     } catch {
       toast.error('Failed to create order');

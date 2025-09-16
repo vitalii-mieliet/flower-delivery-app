@@ -34,7 +34,7 @@ const cartSlice = createSlice({
     ) => {
       cartAdapter.updateOne(state, action);
     },
-    clearCart: cartAdapter.removeAll,
+    clearCart: () => initialState,
   },
 });
 

@@ -100,6 +100,9 @@ const components: Components = {
         maxWidth: 1440,
         paddingLeft: 64,
         paddingRight: 64,
+        '@media (min-width:1200px)': {
+          maxWidth: 1280, // точная ширина для больших экранов
+        },
       },
     },
     defaultProps: {
